@@ -3,11 +3,11 @@ package com.kulpekin.imail.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "message")
+@Table(name = "message_copy")
 public class Message {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "from")
