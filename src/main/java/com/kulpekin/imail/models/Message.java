@@ -22,6 +22,9 @@ public class Message {
     @Column(name = "content")
     private String content;
 
+    @Column(name = "user_email")
+    private String user_email;
+
     public Message() {
     }
 

@@ -17,14 +17,20 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    private final CustomLoginSuccessHandler successHandler;
+
+    private final DataSource dataSource;
 
     @Autowired
-    private CustomLoginSuccessHandler successHandler;
-
-    @Autowired
-    private DataSource dataSource;
+    public SecurityConfiguration(BCryptPasswordEncoder bCryptPasswordEncoder,
+                                 CustomLoginSuccessHandler successHandler,
+                                 DataSource dataSource) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.successHandler = successHandler;
+        this.dataSource = dataSource;
+    }
 
 
     @Override
@@ -32,14 +38,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 // URLs matching for access rights
-                .antMatchers("/").permitAll()
-                .antMatchers("/reset").permitAll()
                 .antMatchers("/forgot").permitAll()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/detailsMovie/{id}").permitAll()
                 .antMatchers("/register").permitAll()
-                .antMatchers("/home/**","/buyTicket").hasAuthority( "SITE_USER")
-                .antMatchers("/admin/**").hasAuthority("ADMIN_USER")
+                .antMatchers("iMail/home/**").hasAuthority( "SITE_USER")
                 .anyRequest().authenticated()
                 .and()
                 // form login
@@ -53,7 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // logout
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/").and()
+                .logoutSuccessUrl("/login").and()
                 .exceptionHandling()
                 .accessDeniedPage("/access-denied");
     }
