@@ -19,9 +19,6 @@ public class SMS {
     @Column(name = "Subjects")
     private String subjects;
 
-    @Column(name = "User_Emails")
-    private String user_email;
-
     @Column(name = "Contents")
     private String contents;
 
@@ -65,11 +62,4 @@ public class SMS {
         this.contents = contents;
     }
 
-    public String getUser_email() {
-        return user_email;
-    }
-
-    public void setUser_email(String user_email) {
-        this.user_email = user_email;
-    }
 }
