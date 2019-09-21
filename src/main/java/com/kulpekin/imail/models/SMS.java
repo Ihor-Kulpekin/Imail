@@ -1,6 +1,7 @@
 package com.kulpekin.imail.models;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "sms")
@@ -21,6 +22,9 @@ public class SMS {
 
     @Column(name = "Contents")
     private String contents;
+
+    @Column(name = "DateGettingMessage")
+    private Date dateGettingMessage;
 
     public int getId() {
         return id;
@@ -62,4 +66,11 @@ public class SMS {
         this.contents = contents;
     }
 
+    public Date getDateGettingMessage() {
+        return dateGettingMessage;
+    }
+
+    public void setDateGettingMessage(Date dateGettingMessage) {
+        this.dateGettingMessage = dateGettingMessage;
+    }
 }

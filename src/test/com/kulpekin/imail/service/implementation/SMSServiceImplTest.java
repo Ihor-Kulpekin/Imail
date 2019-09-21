@@ -35,7 +35,6 @@ public class SMSServiceImplTest {
         expectedSMS.setFroms("froms");
         expectedSMS.setContents("contents");
         expectedSMS.setSubjects("subjects");
-        expectedSMS.setUser_email("emails");
         smsServiceInterface.sentAndSaveSMS(expectedSMS);
     }
 
@@ -57,7 +56,7 @@ public class SMSServiceImplTest {
     public void removeSMSTest() {
         assertEquals(1L,smsServiceInterface.findSMSByTos(expectedSMS.getTos()).size());
         smsServiceInterface.removeSMS(expectedSMS.getId());
-        assertEquals(0L,smsServiceInterface.findSMSByTos(expectedSMS.getUser_email()).size());
+        assertEquals(0L,smsServiceInterface.findSMSByTos(expectedSMS.getTos()).size());
     }
 
     @Test
