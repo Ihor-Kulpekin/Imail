@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
@@ -15,23 +16,25 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Number Room</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th>Subject</th>
+                                <th>Content</th>
+                                <th>Date</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="room : ${roomList}">
-                                <td th:text="${room.id}"></td>
-                                <td th:text="${room.numberRoom}"></td>
+                            <tr th:each="sms : ${listMessage}">
+                                <td th:text="${sms.id}"></td>
+                                <td th:text="${sms.subjects}"></td>
+                                <td th:text="${sms.contents}"></td>
+                                <td th:text="${sms.dateGettingMessage}"></td>
                                 <td>
-                                    <a th:href="@{admin/editRoom/{id}(id=${room.id})}"
+                                    <a th:href="@{admin/editRoom/{id}(id=${sms.id})}"
                                        class="btn btn-primary">
                                         <i class="fas fa-user-edit ml-2"></i>
                                     </a>
                                 </td>
                                 <td>
-                                    <a th:href="@{admin/deleteRoom/{id}(id=${room.id})}"
+                                    <a th:href="@{admin/deleteRoom/{id}(id=${sms.id})}"
                                        class="btn btn-primary">
                                         <i class="fas fa-user-times ml-2"></i>
                                     </a>
